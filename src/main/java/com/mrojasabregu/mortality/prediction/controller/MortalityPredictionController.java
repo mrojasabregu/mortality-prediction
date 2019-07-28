@@ -15,7 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @Api(value = "Mortality Prediction", description = "This api provide the prediction of mortality date")
-@RequestMapping(value = "/api/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class MortalityPredictionController {
 
 

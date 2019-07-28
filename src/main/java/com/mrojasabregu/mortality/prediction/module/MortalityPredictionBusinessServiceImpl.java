@@ -14,10 +14,9 @@ public class MortalityPredictionBusinessServiceImpl implements MortalityPredicti
     PersonRepository personRepository;
 
     @Override
-    public MortalityPredictionResult getModuleData()
-    {
+    public MortalityPredictionResult getModuleData() {
         List<Person> all = personRepository.findAll();
-        float avg= 5.0f;
+        float avg = 5.0f;
 
         return MortalityPredictionResult.builder().avg(avg).persons(all).build();
     }
