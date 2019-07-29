@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -19,6 +21,8 @@ public class Person {
     private String firstName;
     private String LastName;
     private Date birthDate;
-    private int age;
+    private Integer age;
     private Date deathDate;
+    private Long probability;
+    private String cause;
 }
