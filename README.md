@@ -33,6 +33,9 @@ The Docker-compose file describes our multi-container application, the applicati
 - Authentication
 - Implement KMS
 
+## Examples
+
+```localhost:8080/api/persons?page=1&size=7&orderBy=age&direction=DESC```
 
 
 ## Author

@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 @Builder
 @Data
@@ -14,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class MortalityPredictionResult{
 
-    private float avg;
+    private Double avg;
 
-    private List<Person> persons;
+    private Page<Person> persons;
 
 }

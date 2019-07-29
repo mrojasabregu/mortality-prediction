@@ -5,6 +5,10 @@ import com.mrojasabregu.mortality.prediction.module.MortalityPredictionBusinessS
 import com.mrojasabregu.mortality.prediction.module.MortalityPredictionResult;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,19 +27,26 @@ public class MortalityPredictionController {
     private MortalityPredictionBusinessService mortalityPredictionBusinessService;
 
     @ApiOperation(value = "View a list of available people", response = List.class)
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "Successfully retrieved list"),
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @GetMapping("/persons")
-    public ResponseEntity<MortalityPredictionResult> getAllPerson() {
+    public ResponseEntity<MortalityPredictionResult> getAllPerson(
+            @PageableDefault(page = 0, size = 5)
+            @SortDefault.SortDefaults({
+                    @SortDefault(sort = "firstName", direction = Sort.Direction.DESC),
+                    @SortDefault(sort = "id", direction = Sort.Direction.ASC)
+            })
+            Pageable pageable) {
 
-        MortalityPredictionResult moduleData = mortalityPredictionBusinessService.getModuleData();
+        final MortalityPredictionResult moduleData = mortalityPredictionBusinessService.getModuleData(pageable);
 
         return new ResponseEntity<MortalityPredictionResult>(moduleData, HttpStatus.ACCEPTED);
     }
 
-    @ApiOperation(value = "Add an person")
+    @ApiOperation(value = "Add a person")
     @PostMapping("/person")
     public ResponseEntity<MortalityPredictionResult> createPerson(
             @ApiParam(value = "Person object store in database table", required = true)
