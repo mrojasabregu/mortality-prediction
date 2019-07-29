@@ -37,6 +37,12 @@ The Docker-compose file describes our multi-container application, the applicati
 
 ```localhost:8080/api/persons?page=1&size=7&orderBy=age&direction=DESC```
 
+## Dataset
+Health statistics and information systems
+
+https://www.who.int/healthinfo/statistics/mortality_rawdata/en/
+http://apps.who.int/healthinfo/statistics/mortality/causeofdeath_query/ext1_params.php
+
 
 ## Author
 Matias Rojas
