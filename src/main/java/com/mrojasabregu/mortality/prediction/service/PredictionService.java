@@ -4,6 +4,7 @@ import com.mrojasabregu.mortality.prediction.exception.BadRequestException;
 import com.mrojasabregu.mortality.prediction.model.Mortality;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import retrofit2.Response;
 
 @Service
 public class PredictionService {
@@ -12,13 +13,12 @@ public class PredictionService {
     private PredictionClient predictionClient;
 
     public Mortality findMortality(long age) {
-        Mortality mortality = null;
         try {
-            mortality = predictionClient.findMortality(age);
+            Response<Mortality> execute = predictionClient.findMortality(age).execute();
+            return execute.body();
         } catch (Exception ex) {
             throw new BadRequestException(ex);
         }
 
-        return mortality;
     }
 }

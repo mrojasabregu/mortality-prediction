@@ -36,20 +36,20 @@ public class MortalityPredictionBusinessServiceImpl implements MortalityPredicti
 
         final Page<Person> all = personRepository.findAll(pageable);
 
-        Double avg = 1.0D;
+        Double avg = -1.0D;
 
         List<Person> people1 = Optional.ofNullable(all.getContent()).orElse(new ArrayList<>());
 
         if (!people1.isEmpty()) {
             OptionalDouble average = people1.stream()
-                    .filter(Objects::nonNull)
+                    .filter(person -> person.getAge() != null)
                     .mapToInt(Person::getAge)
                     .average();
             avg = average.isPresent() ? average.getAsDouble() : -1.0D;
         }
 
 
-        return MortalityPredictionResult.builder().avg(avg).persons(all).build();
+        return MortalityPredictionResult.builder().avg(avg).people(all).build();
     }
 
     @Transactional
