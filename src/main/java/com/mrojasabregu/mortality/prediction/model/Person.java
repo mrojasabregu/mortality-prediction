@@ -23,6 +23,5 @@ public class Person {
     private Date birthDate;
     private Integer age;
     private Date deathDate;
-    private Long probability;
-    private String cause;
+    private Mortality mortality;
 }

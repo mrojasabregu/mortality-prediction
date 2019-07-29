@@ -1,5 +1,14 @@
 version: "3.2"
 services:
+  pythonapp:
+    restart: always
+    container_name: python-app
+    build:
+      context: python
+      dockerfile: deployments/app/Dockerfile
+    ports:
+      - 5000:5000
+
   mongodb:
     restart: always
     image: mongo:3.6
@@ -27,12 +36,3 @@ services:
       - 8080:8080
     depends_on:
       - mongodb
-
-    app:
-      restart: always
-      container_name: python-app
-      build:
-        context: python
-        dockerfile: deployments/app/Dockerfile
-      ports:
-        - 5000:5000

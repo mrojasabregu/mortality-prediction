@@ -14,5 +14,5 @@ import org.springframework.data.domain.Page;
 public class MortalityPredictionResult {
 
     private Double avg;
-    private Page<Person> persons;
+    private Page<Person> people;
 }
