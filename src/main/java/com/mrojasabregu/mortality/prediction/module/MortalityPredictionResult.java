@@ -11,10 +11,8 @@ import org.springframework.data.domain.Page;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MortalityPredictionResult{
+public class MortalityPredictionResult {
 
     private Double avg;
-
     private Page<Person> persons;
-
 }

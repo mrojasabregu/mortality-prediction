@@ -1,6 +1,7 @@
 version: "3.2"
 services:
   mongodb:
+    restart: always
     image: mongo:3.6
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -9,7 +10,7 @@ services:
       - ./data/db:/data/db
     container_name: "mongodb"
     ports:
-    - 27017:27017
+      - 27017:27017
     command: --smallfiles
 
   springboot:
@@ -26,3 +27,12 @@ services:
       - 8080:8080
     depends_on:
       - mongodb
+
+    app:
+      restart: always
+      container_name: python-app
+      build:
+        context: python
+        dockerfile: deployments/app/Dockerfile
+      ports:
+        - 5000:5000

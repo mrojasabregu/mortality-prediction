@@ -35,7 +35,25 @@ The Docker-compose file describes our multi-container application, the applicati
 
 ## Examples
 
-```localhost:8080/api/persons?page=1&size=7&orderBy=age&direction=DESC```
+###GET
+```localhost:8080/api/people?page=0&size=5&orderBy=age&direction=DESC```
+
+###POST
+
+```
+localhost:8080/api/person
+
+{
+	"firstName": "b",
+	"lastName":"b",
+	"age":20,
+	"birthDate": "2014-07-29"
+}
+```
+## Swagger
+
+http://localhost:8080/swagger-ui.html
+
 
 ## Dataset
 Health statistics and information systems
