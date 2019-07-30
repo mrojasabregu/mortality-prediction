@@ -1,5 +1,6 @@
 # Mortality prediction Rest API
 This is a PoC rest API to predict the mortality date of people using Spring Boot, MongoDB and machine learning, running in docker containers defined by docker-compose yml file.
+The prediction of cause of death is based in the dataset provided by Wold Health Organization.
 
 
 ## Requirements
@@ -11,37 +12,37 @@ This is a PoC rest API to predict the mortality date of people using Spring Boot
 ## Build and Run
 Build Docker image
  
-```docker build .```
+```bash
+docker build .
+```
  
 Launch an Application and a Mongo container
 
-```docker-compose up```
+```bash
+docker-compose up --build
+```
 
 ## Docker
 The docker file defines a container based on Java with the jar created by maven package
 
 ## Docker-compose
 The Docker-compose file describes our multi-container application, the application consists in 3 containers.
- - (1)  running the springboot api linked container with MongoDB.
- - (2) MongoDB
- - (3) Machine learning to predict dates of mortality
+1.  Running the springboot api linked container with MongoDB.
+2.  MongoDB
+3.  Machine learning to predict dates of mortality
  
 
-# Next Steps
-- UT Tests
-- Mortality Prediction using machine learning
-- Authentication
-- Implement KMS
+ 
 
 ## Examples
 
-###GET
-```localhost:8080/api/people?page=0&size=5&orderBy=age&direction=DESC```
+### GET
+```http://ec2-54-165-236-240.compute-1.amazonaws.com/api/people?page=0&size=5&orderBy=age&direction=DESC```
 
-###POST
+### POST
 
 ```
-localhost:8080/api/person
+http://ec2-54-165-236-240.compute-1.amazonaws.com/api/person
 
 {
 	"firstName": "b",
@@ -52,7 +53,8 @@ localhost:8080/api/person
 ```
 ## Swagger
 
-http://localhost:8080/swagger-ui.html
+
+http://ec2-54-165-236-240.compute-1.amazonaws.com/swagger-ui.html
 
 
 ## Dataset
@@ -61,6 +63,18 @@ Health statistics and information systems
 https://www.who.int/healthinfo/statistics/mortality_rawdata/en/
 http://apps.who.int/healthinfo/statistics/mortality/causeofdeath_query/ext1_params.php
 
+
+# Next Steps
+- [x] Springboot rest api
+- [x] Integration with mongo
+- [x] Docker & docker-compose
+- [x] Mortality prediction base on dataset of Wold Health Organization
+- [ ] UT Tests
+- [ ] Smoke Tests
+- [ ] Integration Tests
+- [ ] Mortality Prediction using machine learning
+- [ ] Authentication
+- [ ] Implement KMS
 
 ## Author
 Matias Rojas
